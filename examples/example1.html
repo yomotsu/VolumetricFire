@@ -6,18 +6,21 @@
 <style>
 body{margin: 0;padding: 0; background: #000;}
 canvas{display: block;}
+.info{ font-family: sans-serif; position: absolute; color: #fff; background: rgba( 0, 0, 0, .8 ); }
+.info a{ color: inherit; }
 </style>
 </head>
 <body>
+<div class="info"><a href="https://github.com/yomotsu/VolumetricFire">github repo</a></div>
 
-<script src="./lib/three.min.js"></script>
-<script src="VolumetricFire.js"></script>
+<script src="../lib/three.min.js"></script>
+<script src="../VolumetricFire.js"></script>
 
 <script>
 
 // set path to texture images
 // either relative or absolute path
-VolumetricFire.texturePath = './textures/';
+VolumetricFire.texturePath = '../textures/';
 
 var width = window.innerWidth;
 var height = window.innerHeight;

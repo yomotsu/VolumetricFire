@@ -6,4 +6,5 @@ VolumetricFire does not use particle system. Because maximum `pointSize` of part
 
 You can use fire meshes of VolumetricFire provides with `position.set()`, `rotate.set()`, `scale.set()` and other THREE.Mesh features.
 
-[Live demo and example code](http://yomotsu.github.io/VolumetricFire/demo.html)
+- [example1: basic usage](http://yomotsu.github.io/VolumetricFire/examples/examples1.html)
+- [example2](http://yomotsu.github.io/VolumetricFire/examples/examples2.html)
