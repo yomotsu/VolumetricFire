@@ -192,7 +192,10 @@ var VolumetricFire = ( function () {
           type: 't',
           value: fireProfile
         },
-        time: { type: 'f', value: 1.0 }
+        time: {
+          type: 'f',
+          value: 1.0
+        }
       };
 
       material = new THREE.RawShaderMaterial( {

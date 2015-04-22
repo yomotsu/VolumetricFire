@@ -148,11 +148,11 @@ fragmentShader = document.getElementById( 'smoke-fragmentshader' ).textContent;
 texture = THREE.ImageUtils.loadTexture( './images/smoke.png' );
 attributes = { shift: {type: 'f', value: [] } };
 uniforms = {
-    time:           { type: 'f', value: 0 },
-    size:           { type: 'f', value: 3 },
-    texture:        { type: 't', value: texture },
-    lifetime:       { type: 'f', value: 10 },
-    projection:     { type :'f', value: Math.abs( height / ( 2 * Math.tan( THREE.Math.degToRad( camera.fov ) ) ) ) }
+  time:       { type: 'f', value: 0 },
+  size:       { type: 'f', value: 3 },
+  texture:    { type: 't', value: texture },
+  lifetime:   { type: 'f', value: 10 },
+  projection: { type :'f', value: Math.abs( height / ( 2 * Math.tan( THREE.Math.degToRad( camera.fov ) ) ) ) }
 };
 material = new THREE.ShaderMaterial( {
   vertexShader: vertexShader,
@@ -166,13 +166,13 @@ material = new THREE.ShaderMaterial( {
 
 for ( i = 0; i < 32; i ++ ) {
 
-    vertex = new THREE.Vector3(
-      THREE.Math.randFloat( -0.5, 0.5 ),
-      2.5,
-      THREE.Math.randFloat( -0.5, 0.5 )
-    );
-    geometry.vertices.push(vertex);
-    material.attributes.shift.value.push( Math.random() * 1 );
+  vertex = new THREE.Vector3(
+    THREE.Math.randFloat( -0.5, 0.5 ),
+    2.5,
+    THREE.Math.randFloat( -0.5, 0.5 )
+  );
+  geometry.vertices.push(vertex);
+  material.attributes.shift.value.push( Math.random() * 1 );
 
 }
 
