@@ -10,6 +10,8 @@
 
 var VolumetricFire = ( function () {
 
+  'use strict';
+
   var vs = [
 
     'attribute vec3 position;',
@@ -20,8 +22,10 @@ var VolumetricFire = ( function () {
     'varying vec3 texOut;',
 
     'void main ( void ) {',
-      'gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.);',
+
+      'gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 );',
       'texOut = tex;',
+
     '}',
 
   ].join( '\n' );
@@ -236,9 +240,9 @@ var VolumetricFire = ( function () {
 
     this._sliceSpacing = sliceSpacing;
 
-    var widthHalf  = width  * .5;
-    var heightHalf = height * .5;
-    var depthHalf  = depth  * .5;
+    var widthHalf  = width  * 0.5;
+    var heightHalf = height * 0.5;
+    var depthHalf  = depth  * 0.5;
 
     this._posCorners = [
       new THREE.Vector3( -widthHalf, -heightHalf, -depthHalf ),
@@ -335,9 +339,9 @@ var VolumetricFire = ( function () {
 
   VolumetricFire.prototype.slice = function () {
 
-    this._points = [];
+    this._points    = [];
     this._texCoords = [];
-    this._indexes = [];
+    this._indexes   = [];
 
     var i;
     var cornerDistance0 = this._posCorners[ 0 ].dot( this._viewVector );
