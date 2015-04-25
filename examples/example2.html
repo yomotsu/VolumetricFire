@@ -72,12 +72,12 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( width, height );
 document.body.appendChild( renderer.domElement );
 
-var ambientlight = new THREE.AmbientLight( 0xdbce88 );
+var ambientlight = new THREE.AmbientLight( 0x666655 );
 scene.add( ambientlight );
 
-var direlight = new THREE.DirectionalLight( 0xffffff, .5 );
-direlight.position.set( 1, -0.5, -1 );
-scene.add( direlight );
+var pointlight = new THREE.PointLight( 0xff9933, 1, 1.5 );
+pointlight.position.set( 0, 1, 0 );
+scene.add( pointlight );
 
 
 var groundColor = THREE.ImageUtils.loadTexture( './images/groundcolor.jpg' );
@@ -171,7 +171,7 @@ for ( i = 0; i < 32; i ++ ) {
     2.5,
     THREE.Math.randFloat( -0.5, 0.5 )
   );
-  geometry.vertices.push(vertex);
+  geometry.vertices.push( vertex );
   material.attributes.shift.value.push( Math.random() * 1 );
 
 }
@@ -195,6 +195,8 @@ scene.add( smoke );
     Math.cos( elapsed * 0.1 ) * 4
   );
   camera.lookAt( scene.position );
+
+  pointlight.intensity = Math.sin( elapsed * 30 ) * 0.25 + 3;
 
   smoke.material.uniforms.time.value = clock.getElapsedTime();
   fire.update( elapsed );
