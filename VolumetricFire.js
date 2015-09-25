@@ -154,20 +154,13 @@ var VolumetricFire = ( function () {
 
   ].join( '\n' );
 
-  var initMaterial =  (function () {
+  var initMaterial =  ( function () {
 
     var material;
 
     return function () {
 
       if ( !!material ) { return material; }
-
-      var attributes = {
-        tex: {
-          type: 'v3',
-          value: null
-        },
-      }
 
       // TODO
       // Canvas2D で noise 画像を作る
@@ -201,7 +194,6 @@ var VolumetricFire = ( function () {
       material = new THREE.RawShaderMaterial( {
         vertexShader   : vs,
         fragmentShader : fs,
-        attributes     : attributes,
         uniforms       : uniforms,
         side           : THREE.DoubleSide,
         blending       : THREE.AdditiveBlending,
@@ -281,8 +273,8 @@ var VolumetricFire = ( function () {
 
     var geometry = new THREE.BufferGeometry();
     geometry.dynamic = true;
+    geometry.setIndex( new THREE.BufferAttribute( index, 1 ) );
     geometry.addAttribute( 'position', new THREE.BufferAttribute( position, 3 ) );
-    geometry.addAttribute( 'index',    new THREE.BufferAttribute( index,    1 ) );
     geometry.addAttribute( 'tex',      new THREE.BufferAttribute( tex,      3 ) );
 
     var material = initMaterial();
@@ -307,11 +299,11 @@ var VolumetricFire = ( function () {
 
   VolumetricFire.prototype.updateGeometry = function () {
 
-    this.mesh.geometry.attributes.index.array.set( this._indexes );
+    this.mesh.geometry.index.array.set( this._indexes );
     this.mesh.geometry.attributes.position.array.set( this._points );
     this.mesh.geometry.attributes.tex.array.set( this._texCoords );
 
-    this.mesh.geometry.attributes.index.needsUpdate    = true;
+    this.mesh.geometry.index.needsUpdate               = true;
     this.mesh.geometry.attributes.position.needsUpdate = true;
     this.mesh.geometry.attributes.tex.needsUpdate      = true;
 
