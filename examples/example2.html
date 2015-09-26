@@ -133,20 +133,20 @@ fire.mesh.position.set( 0, fireHeight / 2, 0 );
 
 
 var smoke,
+    NUM_OF_PARTICLE = 32,
     vertexShader,
     fragmentShader,
     texture,
-    attributes,
     uniforms,
     material,
-    geometry = new THREE.Geometry(),
-    vertex,
+    geometry = new THREE.BufferGeometry(),
+    position = new Float32Array( NUM_OF_PARTICLE * 3 ),
+    shift    = new Float32Array( NUM_OF_PARTICLE ),
     i;
 
-vertexShader = document.getElementById( 'smoke-vertexshader' ).textContent;
+vertexShader   = document.getElementById( 'smoke-vertexshader' ).textContent;
 fragmentShader = document.getElementById( 'smoke-fragmentshader' ).textContent;
 texture = THREE.ImageUtils.loadTexture( './images/smoke.png' );
-attributes = { shift: {type: 'f', value: [] } };
 uniforms = {
   time:       { type: 'f', value: 0 },
   size:       { type: 'f', value: 3 },
@@ -158,27 +158,25 @@ material = new THREE.ShaderMaterial( {
   vertexShader: vertexShader,
   fragmentShader: fragmentShader,
   uniforms: uniforms,
-  attributes: attributes,
   blending: THREE.AdditiveBlending,
   transparent: true,
   depthWrite: false
 } );
 
-for ( i = 0; i < 32; i ++ ) {
+for ( i = 0; i < NUM_OF_PARTICLE; i ++ ) {
 
-  vertex = new THREE.Vector3(
-    THREE.Math.randFloat( -0.5, 0.5 ),
-    2.5,
-    THREE.Math.randFloat( -0.5, 0.5 )
-  );
-  geometry.vertices.push( vertex );
-  material.attributes.shift.value.push( Math.random() * 1 );
+  position[ i * 3 + 0 ] = THREE.Math.randFloat( -0.5, 0.5 );
+  position[ i * 3 + 1 ] = 2.4;
+  position[ i * 3 + 3 ] = THREE.Math.randFloat( -0.5, 0.5 );
+  shift[ i ] = Math.random() * 1;
 
 }
 
-smoke = new THREE.PointCloud( geometry, material );
+geometry.addAttribute( 'position', new THREE.BufferAttribute( position, 3 ) );
+geometry.addAttribute( 'shift',    new THREE.BufferAttribute( shift,    1 ) );
+
+smoke = new THREE.Points( geometry, material );
 smoke.sortParticles = true;
-smoke.renderDepth = 0;
 scene.add( smoke );
 
 
