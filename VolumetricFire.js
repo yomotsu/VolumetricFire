@@ -8,20 +8,28 @@
  * https://www.iusb.edu/math-compsci/_prior-thesis/YVanzine_thesis.pdf
  */
 
-(function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
+( function ( root, factory ) {
+
+  if ( typeof define === 'function' && define.amd ) {
+
     // AMD. Register as an anonymous module.
-    define([], factory);
-  } else if (typeof module === 'object' && module.exports) {
+    define( [], factory );
+
+  } else if ( typeof module === 'object' && module.exports ) {
+
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
     module.exports = factory();
+
   } else {
+
     // Browser globals (root is window)
-    root.VolumetricFire = factory(root);
+    root.VolumetricFire = factory( root );
+
   }
-}(this, function () {
+
+}( this, function () {
 
   'use strict';
 
@@ -359,7 +367,7 @@
     var minDistance = cornerDistance0;
     var maxDistance = cornerDistance0;
 
-    for ( i = 1; i < 8; ++i ) {
+    for ( i = 1; i < 8; ++ i ) {
 
       cornerDistance[ i ] = this._posCorners[ i ].dot( this._viewVector );
 
@@ -618,4 +626,4 @@
 
   return VolumetricFire;
 
-}));
+} ) );
