@@ -34,7 +34,6 @@
 					"DbgIndex": 0,
 					"DbgName": "Material",
 					"blending": "NormalBlending",
-					"colorAmbient": [0.7624692320823669, 0.7624692320823669, 0.7624692320823669],
 					"colorDiffuse": [0.7624692320823669, 0.7624692320823669, 0.7624692320823669],
 					"colorEmissive": [0.0, 0.0, 0.0],
 					"colorSpecular": [0.0, 0.0, 0.0],

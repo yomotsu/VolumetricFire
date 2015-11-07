@@ -178,6 +178,7 @@
   var initMaterial =  ( function () {
 
     var material;
+    var textureLoader = new THREE.TextureLoader();
 
     return function () {
 
@@ -185,13 +186,13 @@
 
       // TODO
       // Canvas2D で noise 画像を作る
-      var nzw = THREE.ImageUtils.loadTexture( VolumetricFire.texturePath + 'nzw.png' );
+      var nzw = textureLoader.load( VolumetricFire.texturePath + 'nzw.png' );
       nzw.wrapS = THREE.RepeatWrapping;
       nzw.wrapT = THREE.RepeatWrapping;
       nzw.magFilter = THREE.LinearFilter;
       nzw.minFilter = THREE.LinearFilter;
 
-      var fireProfile = THREE.ImageUtils.loadTexture( VolumetricFire.texturePath + 'firetex.png' );
+      var fireProfile = textureLoader.load( VolumetricFire.texturePath + 'firetex.png' );
       fireProfile.wrapS = THREE.ClampToEdgeWrapping;
       fireProfile.wrapT = THREE.ClampToEdgeWrapping;
       fireProfile.magFilter = THREE.LinearFilter;
@@ -367,7 +368,7 @@
     var minDistance = cornerDistance0;
     var maxDistance = cornerDistance0;
 
-    for ( i = 1; i < 8; ++ i ) {
+    for ( i = 1; i < 8; i = ( i + 1 )|0 ) {
 
       cornerDistance[ i ] = this._posCorners[ i ].dot( this._viewVector );
 
@@ -411,7 +412,7 @@
 
       var range = cornerDistance[ startIndex ] - cornerDistance[ endIndex ];
 
-      if ( range != 0.0 ) {
+      if ( range !== 0.0 ) {
 
         var irange = 1.0 / range;
 
@@ -448,7 +449,7 @@
 
     };
 
-    for ( i = 0; i < 3; ++i ) {
+    for ( i = 0; i < 3; i = ( i + 1 )|0 ) {
 
       var activeEdge = createEdge.call( this, maxCorner, cornerNeighbors[ maxCorner ][ i ] );
       activeEdge.prev = ( i + 2 ) % 3;
@@ -554,7 +555,7 @@
 
       } while ( cur !== firstEdge );
 
-      for ( i = 2; i < count; ++i ) {
+      for ( i = 2; i < count; i = ( i + 1 )|0 ) {
 
         this._indexes.push(
           nextIndex,

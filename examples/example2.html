@@ -79,11 +79,12 @@ var pointlight = new THREE.PointLight( 0xff9933, 1, 1.5 );
 pointlight.position.set( 0, 1, 0 );
 scene.add( pointlight );
 
+var textureLoader = new THREE.TextureLoader();
 
-var groundColor = THREE.ImageUtils.loadTexture( './images/groundcolor.jpg' );
+var groundColor = textureLoader.load( './images/groundcolor.jpg' );
 groundColor.wrapS = groundColor.wrapT = THREE.RepeatWrapping;
 groundColor.repeat.set( 6, 6 );
-var groundNormal = THREE.ImageUtils.loadTexture( './images/groundnormal.jpg' );
+var groundNormal = textureLoader.load( './images/groundnormal.jpg' );
 groundColor.wrapS = groundColor.wrapT = THREE.RepeatWrapping;
 groundColor.repeat.set( 6, 6 );
 
@@ -146,7 +147,7 @@ var smoke,
 
 vertexShader   = document.getElementById( 'smoke-vertexshader' ).textContent;
 fragmentShader = document.getElementById( 'smoke-fragmentshader' ).textContent;
-texture = THREE.ImageUtils.loadTexture( './images/smoke.png' );
+texture = textureLoader.load( './images/smoke.png' );
 uniforms = {
   time:       { type: 'f', value: 0 },
   size:       { type: 'f', value: 3 },
