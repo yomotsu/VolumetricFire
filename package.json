@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stanford-gfx/VolumetricFire.git"
+    "url": "git+https://github.com/yomotsu/VolumetricFire.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Yomotsu",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/stanford-gfx/VolumetricFire/issues"
+    "url": "https://github.com/yomotsu/VolumetricFire/issues"
   },
-  "homepage": "https://github.com/stanford-gfx/VolumetricFire#readme"
+  "homepage": "https://github.com/yomotsu/VolumetricFire#readme"
 }
